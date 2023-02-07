@@ -7,8 +7,19 @@ from statistics import variance
 from statistics import covariance
 from statistics import mean
 
-x = [32, 50, 21, 23]
-y = [36.3, 5, 21.6, 22]
+with open("values.txt", "r") as f:
+    x = list()
+    y = list()
+    for line in f:
+        try:
+            line = line.strip()
+            data = line.split(chr(9))
+            x.append(float(data[0]))
+            y.append(float(data[1]))
+        except:
+            print("Erreur lecture fichier")
+            x.clear
+            y.clear
 
 def trouverA(x, y):
     return covariance(x, y) / variance(x)
@@ -22,3 +33,8 @@ def regressionLineaire(x, y):
     return "a = " + str(a) + "\nb = " + str(b)
 
 print(regressionLineaire(x,y))
+
+
+
+
+
