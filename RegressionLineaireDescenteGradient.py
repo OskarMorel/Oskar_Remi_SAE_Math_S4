@@ -49,10 +49,4 @@ def descenteGradient(x,y,a,b):
         b -= derivePartielleB(x,y,a,b) * pas
         a -= derivePartielleA(x,y,a,b) * pas
 
-    return "gradient : a = " + str(a) + " | b = " + str(b)
-
-print(descenteGradient(x,y,1,1))
-
-
-
-
+    return a, b
