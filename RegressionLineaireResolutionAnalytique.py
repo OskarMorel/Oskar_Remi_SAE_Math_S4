@@ -2,10 +2,8 @@
 # |-------------------------------------|
 # Algorithme N°1 pour l'estimation du prix d'un appartement  par rapport à ça surface  Régression linéaire par resolution analytique
 
-
-from statistics import variance
-from statistics import covariance
-from statistics import mean
+from matplotlib import pyplot as plt
+from Outils import *
 
 with open("values.txt", "r") as f:
     x = list()
@@ -25,7 +23,7 @@ def trouverA(x, y):
     return covariance(x, y) / variance(x)
 
 def trouverB(x, y, a):
-    return mean(y) - a * mean(x)
+    return moyenne(y) - a * moyenne(x)
 
 def regressionLineaire(x, y):
     a = trouverA(x, y)
@@ -35,6 +33,16 @@ def regressionLineaire(x, y):
 print(regressionLineaire(x,y))
 
 
+def graphique(x, y):
+    a = trouverA(x,y)
+    b = trouverB(x, y ,a)
+    y_regression = [a * xi + b for xi in x]
 
+    plt.scatter(x, y)
+    plt.plot(x, y_regression, color='red')
+    plt.xlabel("Surface d'un appartement")
+    plt.ylabel("Prix de l'appartement")
+    plt.show()
 
+graphique(x, y)
 
