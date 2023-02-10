@@ -22,20 +22,32 @@ a = 2.6370100601552733
 b = 3.527390358018039
 
 while True:
+    if url == None:
+        quitter = False
+        while not quitter:
+            url = input("Veuillez entrer le chemin de votre fichier contenant les valeur : ")
+            if os.path.exists(url):
+                x, y = ouvertureFichier(url)
+                print("Importation du fichier réussie")
+                break
+            else:
+                print("Le chemin du fichier est erroné")
+
+                choixQuitter = input("Voulez vous quitter l'importation du fichier ? O / N : ")
+                if choixQuitter == "O":
+                    quitter = True
+                else:
+                    url = None
     print("\n***********************")
     print("Choisissez une option")
     print("***********************\n")
-    if url == None:
-        print("1 - Ouvrir le fichier contenant les valeurs")
-        print("2 - Calculer le prix d'un appartement")
-    else:
-        print("1 - Ouvrir un autre fichier contenant les valeurs")
-        print("2 - Calculer le prix d'un appartement")
-        print("3 - Régression linéaire par resolution analytique")
-        print("4 - Régression linéaire par descente de gradient")
-        print("5 - Indicateurs statistiques")
-        print("6 - Afficher le graphique")
-        print("7 - Quitter")
+    print("1 - Ouvrir un autre fichier contenant les valeurs")
+    print("2 - Calculer le prix d'un appartement")
+    print("3 - Régression linéaire par resolution analytique")
+    print("4 - Régression linéaire par descente de gradient")
+    print("5 - Indicateurs statistiques")
+    print("6 - Afficher le graphique")
+    print("7 - Quitter")
 
     choix = input("\nEntrez votre choix : ")
     print("\n")
@@ -46,7 +58,6 @@ while True:
             url = input("Veuillez entrer le chemin de votre fichier contenant les valeur : ")
             if os.path.exists(url):
                 x, y = ouvertureFichier(url)
-                print(x, y)
                 print("Importation du fichier réussie")
                 break
             else:
@@ -59,7 +70,7 @@ while True:
                     url = None
     elif choix == "2":
         surface = input("Veuillez entrer la surface d'un appartement (en m²) : ")
-        prixAppart = a * float(surface) + b
+        prixAppart = trouverA(x, y) * float(surface) + trouverB(x, y ,trouverA(x, y))
         print("Pour un appartement de " + str(surface)+ " m². Le prix sera de " + str("{:.2f}".format(prixAppart)) + " €")
     elif choix == "3":
         print("Regression linéaire par résolution analytique\n" + regressionLineaire(x, y))

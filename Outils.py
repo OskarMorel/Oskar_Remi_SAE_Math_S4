@@ -6,6 +6,21 @@ import math
 from matplotlib import pyplot as plt
 from RegressionLineaireResolutionAnalytique import *
 
+def ouvertureFichier(url):
+    with open(url, "r") as f:
+        x = list()
+        y = list()
+        for line in f:
+            try:
+                line = line.strip()
+                data = line.split(chr(9))
+                x.append(float(data[0]))
+                y.append(float(data[1]))
+            except:
+                print("Erreur lecture fichier")
+                x.clear()
+                y.clear()
+    return x, y
 
 def moyenne(x):
     return sum(x) / len(x)
@@ -54,22 +69,6 @@ def coefCorrelationLineaire(x,y):
     SommeRacineDifDesY = sum([y_i ** 2 for y_i in diffDesY])
 
     return sum(multiplicationDesDiff) / math.sqrt(SommeRacineDifDesX * SommeRacineDifDesY)
-
-def ouvertureFichier(url):
-    with open(url, "r") as f:
-        x = list()
-        y = list()
-        for line in f:
-            try:
-                line = line.strip()
-                data = line.split(chr(9))
-                x.append(float(data[0]))
-                y.append(float(data[1]))
-            except:
-                print("Erreur lecture fichier")
-                x.clear
-                y.clear
-    return x, y
 
 def trouverA(x,y):
     return covariance(x,y) / variance(x)
