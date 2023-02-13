@@ -18,8 +18,6 @@ print("┏━━━┓╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋�
       + "╋╋╋╋╋╋╋┗━━┛\n")
 
 url = None
-a = 2.6370100601552733
-b = 3.527390358018039
 
 while True:
     if url == None:
@@ -47,7 +45,8 @@ while True:
     print("4 - Régression linéaire par descente de gradient")
     print("5 - Indicateurs statistiques")
     print("6 - Afficher le graphique")
-    print("7 - Quitter")
+    print("7 - Aide format des données")
+    print("8 - Quitter")
 
     choix = input("\nEntrez votre choix : ")
     print("\n")
@@ -70,12 +69,16 @@ while True:
                     url = None
     elif choix == "2":
         surface = input("Veuillez entrer la surface d'un appartement (en m²) : ")
-        prixAppart = trouverA(x, y) * float(surface) + trouverB(x, y ,trouverA(x, y))
-        print("Pour un appartement de " + str(surface)+ " m². Le prix sera de " + str("{:.2f}".format(prixAppart)) + " €")
+        try:
+            prixAppart = 2.64 * float(surface) + 3.53
+            prixAppart *= 1000
+            print("Pour un appartement de " + str(surface)+ " m². Le prix sera de " + str("{:.2f}".format(prixAppart)) + " €")
+        except ValueError:
+            print("\nErreur, vous n'avez pas rentré un nombre")
     elif choix == "3":
         print("Regression linéaire par résolution analytique\n" + regressionLineaire(x, y))
     elif choix == "4":
-        print("Regression linéaire par descente de gradient\n" + descenteGradient(x, y, 1, 1))
+        print("Regression linéaire par descente de gradient\n" + descenteGradient(x, y, 1, 1, 1000))
     elif choix == "5":
         print("*****************")
         print("Indicateurs sur X")
@@ -114,6 +117,11 @@ while True:
     elif choix == "6":
         graphique(x, y)
     elif choix == "7":
+        print("Quand vous voulez remplir votre propre fichier avec vos propres données. Il faut respecter le\n"
+              + "format attendu. Sur chaque ligne il faut 'x' votre valeur x. Ensuite tabulation et enfin\n"
+              + "'y' votre valeur y.\n"
+              + "Ex : 62   94.3")
+    elif choix == "8":
         print("Merci, au revoir")
         time.sleep(5)
         break

@@ -4,6 +4,8 @@
 
 from Outils import *
 
+# Utilise trouveA et trouver B puis le renvoies sous forme de chaine de caractère pour un affichage plus simple
+# x, y : tableau des valeurs
 def regressionLineaire(x, y):
     a = trouverA(x,y)
     b = trouverB(x,y,trouverA(x,y))
