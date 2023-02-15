@@ -76,7 +76,7 @@ while True:
         except ValueError:
             print("\nErreur, vous n'avez pas rentré un nombre")
     elif choix == "3":
-        print("Regression linéaire par résolution analytique\n" + regressionLineaire(x, y))
+        print("Regression linéaire par résolution analytique\n" + str(regressionLineaire(x, y)))
     elif choix == "4":
         print("Regression linéaire par descente de gradient\n" + descenteGradient(x, y, 1, 1, 1000))
     elif choix == "5":

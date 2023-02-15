@@ -1,5 +1,5 @@
 # | Auteurs : Remi Jauzion - Oskar Morel |
-# |-------------------------------------|
+# |--------------------------------------|
 # Algorithme N°2 pour l'estimation du prix d'un appartement  par rapport à ça surface  Régression linéaire par descente de gradient
 
 # Calcule la dérivée partielle de a
@@ -36,19 +36,22 @@ def derivePartielleB(x,y,a,b):
 # maxIter : le nombre max d'itération avant que la boucle s'arrête (pour pas prendre trop de
 # ressource ou finir sur un cas infini
 # return : a et b calculés avec la descente de gradient
+
+#TODO modifier pas sinon gros fichier passe pas et attention deriver partielle trop de calcul a faire, faut optimiser
+
 def descenteGradient(x,y,a,b, maxIter):
     pas = 0.00001
     fini = False
     i = 0
     while not fini:
 
-        if abs(derivePartielleB(x,y,a,b)) <= 0.0001 and abs(derivePartielleA(x,y,a,b)) <= 0.0001 or i == maxIter:
+        if (abs(derivePartielleB(x,y,a,b)) <= 0.0001 and abs(derivePartielleA(x,y,a,b)) <= 0.0001) or (i >= maxIter):
             fini = True
 
         b -= derivePartielleB(x,y,a,b) * pas
         a -= derivePartielleA(x,y,a,b) * pas
 
-        i += i
+        i += 1
 
     return "a = " + str(a) + "\nb = " + str(b)
 

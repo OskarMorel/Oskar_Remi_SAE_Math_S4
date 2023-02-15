@@ -3,7 +3,7 @@
 # Outils mathématiques statistiques pour aider aux différents calculs du projet
 import math
 
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 from RegressionLineaireResolutionAnalytique import *
 
 # Ouvre un fichier est vérifie que la tabulation entre les x et les y est bien faite
@@ -113,17 +113,18 @@ def coefCorrelationLineaire(x,y):
 # Affiche un graphique nuage de points avec une droite de régression. Utilisation de
 # la libairie mathplotlib et pyplot. Utilise la méthode analytique
 # x, y : les tableaux contenant les valeurs
-def graphique(x, y):
-    a = trouverA(x, y)
-    b = trouverB(x, y, a)
 
-    droiteRegression = [a * xi + b for xi in x]
+ #def graphique(x, y):
+   # a = trouverA(x, y)
+    #b = trouverB(x, y, a)
 
-    plt.scatter(x, y)
-    plt.plot(x, droiteRegression, color='red')
-    plt.xlabel("Surface d'un appartement")
-    plt.ylabel("Prix de l'appartement")
-    plt.show()
+    #droiteRegression = [a * xi + b for xi in x]
+
+    #plt.scatter(x, y)
+    #plt.plot(x, droiteRegression, color='red')
+    #plt.xlabel("Surface d'un appartement")
+    #plt.ylabel("Prix de l'appartement")
+    #plt.show()
 
 
 
