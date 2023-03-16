@@ -78,7 +78,10 @@ while True:
     elif choix == "3":
         print("Regression linéaire par résolution analytique\n" + str(regressionLineaire(x, y)))
     elif choix == "4":
-        print("Regression linéaire par descente de gradient\n" + descenteGradient(x, y, 1, 1, 1000))
+        lesSommesResultat = lesSommes(x,y)
+
+        print("Regression linéaire par descente de gradient\n"
+              + descenteGradient(x, 1, 1, lesSommesResultat[0],lesSommesResultat[1],lesSommesResultat[2],lesSommesResultat[3], 100000))
     elif choix == "5":
         print("*****************")
         print("Indicateurs sur X")

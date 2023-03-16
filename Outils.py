@@ -27,18 +27,6 @@ def ouvertureFichier(url):
                 y.clear()
     return x, y
 
-# Trouve A pour la régréssion linéaire par méthode analytique
-# x , y : tableau avec les valeurs
-# return A
-def trouverA(x,y):
-    return covariance(x,y) / variance(x)
-
-# Trouve B pour la régréssion linéaire par méthode analytique
-# x , y : tableau avec les valeurs
-# a : la valeure calculée avec la méthode TrouverA(x, y)
-# return B
-def trouverB(x,y,a):
-    return moyenne(y) - a * moyenne(x)
 
 # calcule la moyenne
 # x : tableau des valeurs où on va calculer la moyenne
@@ -66,8 +54,21 @@ def variance (x):
     for i in range(len(x)):
         variance += (x[i] - moyenne(x)) ** 2
     variance /= (len(x) - 1)
-
     return variance
+
+# Trouve A pour la régréssion linéaire par méthode analytique
+# x , y : tableau avec les valeurs
+# return A
+def trouverA(x,y):
+    return covariance(x,y) / variance(x)
+
+# Trouve B pour la régréssion linéaire par méthode analytique
+# x , y : tableau avec les valeurs
+# a : la valeure calculée avec la méthode TrouverA(x, y)
+# return B
+def trouverB(x,y,a):
+    return moyenne(y) - a * moyenne(x)
+
 
 # Calcule la médiane (valeure au milieu)
 # x : tableau avec les valeurs
