@@ -4,6 +4,8 @@
 import math
 
 # from matplotlib import pyplot as plt
+from matplotlib import pyplot as plt
+
 from RegressionLineaireResolutionAnalytique import *
 
 # Ouvre un fichier est vérifie que la tabulation entre les x et les y est bien faite
@@ -115,17 +117,17 @@ def coefCorrelationLineaire(x,y):
 # la libairie mathplotlib et pyplot. Utilise la méthode analytique
 # x, y : les tableaux contenant les valeurs
 
- #def graphique(x, y):
-   # a = trouverA(x, y)
-    #b = trouverB(x, y, a)
+def graphique(x, y):
+    a = trouverA(x, y)
+    b = trouverB(x, y, a)
 
-    #droiteRegression = [a * xi + b for xi in x]
+    droiteRegression = [a * xi + b for xi in x]
 
-    #plt.scatter(x, y)
-    #plt.plot(x, droiteRegression, color='red')
-    #plt.xlabel("Surface d'un appartement")
-    #plt.ylabel("Prix de l'appartement")
-    #plt.show()
+    plt.scatter(x, y)
+    plt.plot(x, droiteRegression, color='red')
+    plt.xlabel("Surface d'un appartement")
+    plt.ylabel("Prix de l'appartement")
+    plt.show()
 
 
 

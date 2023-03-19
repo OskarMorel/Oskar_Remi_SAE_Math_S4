@@ -8,14 +8,9 @@ from RegressionLineaireDescenteGradient import *
 from Outils import *
 import time
 
-print("┏━━━┓╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋┏┓\n"
-      + "┃┏━┓┃╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋┃┃\n"
-      + "┃┗━┛┣━━┳━━┳━┳━━┳━━┳━━┳┳━━┳━┓╋┃┃┏┳━┓┏━━┳━━┳┳━┳━━┓\n"
-      + "┃┏┓┏┫┃━┫┏┓┃┏┫┃━┫━━┫━━╋┫┏┓┃┏┓┓┃┃┣┫┏┓┫┃━┫┏┓┣┫┏┫┃━┫\n"
-      + "┃┃┃┗┫┃━┫┗┛┃┃┃┃━╋━━┣━━┃┃┗┛┃┃┃┃┃┗┫┃┃┃┃┃━┫┏┓┃┃┃┃┃━┫\n"
-      + "┗┛┗━┻━━┻━┓┣┛┗━━┻━━┻━━┻┻━━┻┛┗┛┗━┻┻┛┗┻━━┻┛┗┻┻┛┗━━┛\n"
-      + "╋╋╋╋╋╋╋┏━┛┃\n"
-      + "╋╋╋╋╋╋╋┗━━┛\n")
+print("---------------------------------\n"
+    + "|     Regression linéaire       |\n"
+    + "---------------------------------")
 
 url = None
 
@@ -78,10 +73,9 @@ while True:
     elif choix == "3":
         print("Regression linéaire par résolution analytique\n" + str(regressionLineaire(x, y)))
     elif choix == "4":
-        lesSommesResultat = lesSommes(x,y)
 
         print("Regression linéaire par descente de gradient\n"
-              + descenteGradient(x, 1, 1, lesSommesResultat[0],lesSommesResultat[1],lesSommesResultat[2],lesSommesResultat[3], 100000))
+              + descenteGradient(x, y, 1000000))
     elif choix == "5":
         print("*****************")
         print("Indicateurs sur X")

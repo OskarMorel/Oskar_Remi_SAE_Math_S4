@@ -12,12 +12,14 @@ def lesSommes(x, y):
     sommeX = 0
     sommeXY = 0
     sommeY = 0
+    sommeYAuCarre = 0
     for i in range(len(x)):
         sommeXAuCarre = sommeXAuCarre + (x[i] * x[i])
+        sommeYAuCarre = sommeYAuCarre + (y[i] * y[i])
         sommeX = sommeX + x[i]
         sommeXY = sommeXY + (x[i] * y[i])
         sommeY = sommeY + y[i]
-    return sommeX,sommeY,sommeXY,sommeXAuCarre
+    return sommeX,sommeY,sommeXY,sommeXAuCarre, sommeYAuCarre
 
 
 
@@ -31,7 +33,7 @@ def derivePartielleA(a,b, sommeXAuCarre, sommeX, sommeXY):
 # a, b : valeurs initiale
 # return : le resultat de la derivee de b
 def derivePartielleB(x,a,b,sommeX,sommeY):
-    resultat = 2 * ((a * sommeX) + (len(x) * b) - sommeY)
+    resultat = 2 * (a * sommeX + len(x) * b - sommeY)
     return resultat
 
 # Utilise les deux méthodes de calcul des dérivées partielles
@@ -39,22 +41,37 @@ def derivePartielleB(x,a,b,sommeX,sommeY):
 # ressource ou finir sur un cas infini
 # return : a et b calculés avec la descente de gradient
 
-#TODO modifier pas sinon gros fichier passe pas et attention derive partielle trop de calcul a faire, faut optimiser
+def descenteGradient(x,y,maxIter):
 
-def descenteGradient(x,a,b,sommeX,sommeY,sommeXY,sommeXAuCarre, maxIter):
-    pas = 0.00001
+    a = 1
+    b = 1
+    fctCoutAvant = 0
+    fctCoutApres = 0
+
+    (sommeX,sommeY,sommeXY,sommeXAuCarre, sommeYAuCarre) = lesSommes(x, y)
+
+    pas = 0.0001
     fini = False
     i = 0
     while not fini:
 
-        if (i >= maxIter or (abs(derivePartielleB(x, a, b, sommeX, sommeY)) <= 0.00001 and abs(derivePartielleA(a, b, sommeXAuCarre, sommeX, sommeXY)) <= 0.00001)):
+        if (i >= maxIter or (abs(derivePartielleB(x, a, b, sommeX, sommeY)) <= 0.0001 and abs(derivePartielleA(a, b, sommeXAuCarre, sommeX, sommeXY)) <= 0.0001)):
             fini = True
 
-        b -= derivePartielleA(a,b, sommeXAuCarre, sommeX, sommeXY) * pas
-        a -= derivePartielleB(x,a,b,sommeX,sommeY) * pas
+        fctCoutAvant = sommeYAuCarre - 2 * a * sommeXY - 2 * b * sommeY + a * a * sommeXAuCarre + 2 * a * b * sommeX + len(
+            x) * b * b
+
+        a -= derivePartielleA(a,b, sommeXAuCarre, sommeX, sommeXY) * pas
+        b -= derivePartielleB(x,a,b,sommeX,sommeY) * pas
+
+        fctCoutApres = sommeYAuCarre - 2 * a * sommeXY - 2 * b * sommeY + a * a * sommeXAuCarre + 2 * a * b * sommeX + len(
+            x) * b * b
+
+        # On divise le pas par 2 si la fonction cout est plus grande après le calcul du nouveau gradient que avant
+        if fctCoutApres > fctCoutAvant:
+            pas /= 2
 
         i+=1
-
     return "a = " + str(a) + "\nb = " + str(b)
 
 
