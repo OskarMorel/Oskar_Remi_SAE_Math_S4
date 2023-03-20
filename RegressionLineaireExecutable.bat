@@ -1,3 +1,3 @@
-python -m pip install -U pip
-python -m pip install -U matplotlib
-py .\ProgrammePrincipal.py
+@echo off
+"%~dp0\python.exe" "%~dp0\src\ProgrammePrincipal.py"
+pause
